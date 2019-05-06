@@ -3,6 +3,7 @@ package de.igorakkerman.kata.twoslicesmaxsum;
 import org.junit.jupiter.api.Test;
 
 import static de.igorakkerman.kata.twoslicesmaxsum.TwoSlicesMaxSum.*;
+import static java.util.stream.IntStream.rangeClosed;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TwoSlicesMaxSumTest {
@@ -36,4 +37,14 @@ class TwoSlicesMaxSumTest {
         assertThat(twoSlicesMaxSum(new int[]{7, 8, 1, 4, 9, 4, 9, 8}, 3, 2))
                 .isEqualTo(34);
     }
+
+    @Test
+    void sequence_100_90() {
+        assertThat(twoSlicesMaxSum(
+                rangeClosed(1, 1_000_000).toArray(), 100, 90))
+                .isEqualTo(189982045);
+    }
+
+    // O(n²) version: 9:38 minutes
+    // O(n) version:  < 100ms
 }
