@@ -25,9 +25,9 @@ public class TwoSlicesMaxSum {
     private static int klSums(int[] a, int k, int l, int[] kMaxSums) {
         int lSum = sliceSum(a, a.length - l, a.length - 1);
         int maxSum = kMaxSums[a.length - l - 1] + lSum;
-        for (int start = a.length - l - 1; start > k; start--) {
+        for (int start = a.length - l - 1; start >= k; start--) {
             lSum = lSum - a[start + l] + a[start];
-            maxSum = max(maxSum, kMaxSums[start - 2] + lSum);
+            maxSum = max(maxSum, kMaxSums[start - 1] + lSum);
         }
         return maxSum;
     }
