@@ -3,7 +3,7 @@
 ### Task
 Given an array of integers _a_ and two positive integers _k_,_l_,
 find the maximum sum of the elements 
-of two disjoint slices of _a_ of size _k_ and _l_, respectively.
+of two disjoint slices of _a_ of size _k_ and _l_, in that order, respectively (_k_-slice before _l_-slice).
 
 If no such two slices exist, the result should be _-1_.
 
