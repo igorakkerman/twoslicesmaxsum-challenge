@@ -52,6 +52,13 @@ class TwoSlicesMaxSumTest {
     }
 
     @Test
+    void sequence_negative_3_2() {
+        assertThat(twoSlicesMaxSum(new int[]{-7, -8, -1, -4, -9, -4, -9, -8}, 3, 2))
+                .isEqualTo(-26);
+    }
+
+
+    @Test
     @Disabled
     void sequence_100_90() {
         assertThat(twoSlicesMaxSum(
