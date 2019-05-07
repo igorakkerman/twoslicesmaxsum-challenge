@@ -16,27 +16,27 @@ public class TwoSlicesMaxSum {
     private static void kSums(int[] a, int k, int l, int[] kMaxSums) {
         int kSum = sliceSum(a, 0, k - 1);
         kMaxSums[k - 1] = kSum;
-        for (int end = k; end < a.length - l; end++) {
-            kSum = kSum - a[end - k] + a[end];
-            kMaxSums[end] = max(kMaxSums[end - 1], kSum);
+        for (int upperBound = k; upperBound < a.length - l; upperBound++) {
+            kSum = kSum - a[upperBound - k] + a[upperBound];
+            kMaxSums[upperBound] = max(kMaxSums[upperBound - 1], kSum);
         }
     }
 
     private static int klSums(int[] a, int k, int l, int[] kMaxSums) {
-        int start = a.length - l;
-        int lSum = sliceSum(a, start, a.length - 1);
+        int lowerBound = a.length - l;
+        int lSum = sliceSum(a, lowerBound, a.length - 1);
         int maxSum = Integer.MIN_VALUE;
         do {
-            --start;
-            maxSum = max(maxSum, kMaxSums[start] + lSum);
-            lSum = lSum - a[start + l] + a[start];
-        } while (start >= k);
+            --lowerBound;
+            maxSum = max(maxSum, kMaxSums[lowerBound] + lSum);
+            lSum = lSum - a[lowerBound + l] + a[lowerBound];
+        } while (lowerBound >= k);
         return maxSum;
     }
 
-    private static int sliceSum(int[] a, int start, int end) {
+    private static int sliceSum(int[] a, int lowerBound, int upperBound) {
         int sum = 0;
-        for (int i = start; i <= end; i++)
+        for (int i = lowerBound; i <= upperBound; i++)
             sum += a[i];
         return sum;
     }
