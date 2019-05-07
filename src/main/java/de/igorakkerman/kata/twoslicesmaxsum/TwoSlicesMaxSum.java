@@ -16,19 +16,21 @@ public class TwoSlicesMaxSum {
     private static void kSums(int[] a, int k, int l, int[] kMaxSums) {
         int kSum = sliceSum(a, 0, k - 1);
         kMaxSums[k - 1] = kSum;
-        for (int end = k; end < a.length - l; end ++) {
+        for (int end = k; end < a.length - l; end++) {
             kSum = kSum - a[end - k] + a[end];
             kMaxSums[end] = max(kMaxSums[end - 1], kSum);
         }
     }
 
     private static int klSums(int[] a, int k, int l, int[] kMaxSums) {
-        int lSum = sliceSum(a, a.length - l, a.length - 1);
-        int maxSum = kMaxSums[a.length - l - 1] + lSum;
-        for (int start = a.length - l - 1; start >= k; start--) {
+        int start = a.length - l;
+        int lSum = sliceSum(a, start, a.length - 1);
+        int maxSum = 0;
+        do {
+            --start;
+            maxSum = max(maxSum, kMaxSums[start] + lSum);
             lSum = lSum - a[start + l] + a[start];
-            maxSum = max(maxSum, kMaxSums[start - 1] + lSum);
-        }
+        } while (start >= k);
         return maxSum;
     }
 
